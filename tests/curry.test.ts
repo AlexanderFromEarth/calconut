@@ -1,3 +1,5 @@
+import {curry} from '../src/common/curry';
+
 describe('Curry', () => {
   const sumOfThree = (a: number, b: number, c: number) => a + b + c;
   const curriedSumOfThree = curry(sumOfThree);
