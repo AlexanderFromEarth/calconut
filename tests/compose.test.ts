@@ -1,3 +1,5 @@
+import {compose} from '../src/common/compose';
+
 describe('Compose', () => {
   const addTwo = (num: number) => num + 2;
   const multiplyByTwo = (num: number) => num * 2;
