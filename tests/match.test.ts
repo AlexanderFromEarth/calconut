@@ -1,4 +1,4 @@
-import {match} from '../src/common/match';
+import {match} from '../src/common/functions/match';
 
 describe('Match', () => {
   it('One type', () => {
@@ -23,6 +23,7 @@ describe('Match', () => {
           Object: (obj2) => (obj as {value: number}).value - (obj2 as {value: number}).value,
         }),
     });
+
     expect(typeMatch([1, 2, 3])!([1, 2, 3])).toEqual(5);
     expect(typeMatch({value: 1})!([1, 2, 3])).toEqual(2);
     expect(typeMatch([1, 2, 3])!({value: 1})).toEqual(4);

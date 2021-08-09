@@ -1,4 +1,4 @@
-import {getType} from '../src/common/getType';
+import {getType} from '../src/common/functions/getType';
 
 describe('GetType', () => {
   it('Number', () => {

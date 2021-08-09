@@ -1,4 +1,4 @@
-import {compose} from '../src/common/compose';
+import {compose} from '../src/common/functions/compose';
 
 describe('Compose', () => {
   const addTwo = (num: number) => num + 2;

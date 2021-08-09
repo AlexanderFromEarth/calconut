@@ -4,7 +4,7 @@
  * ```typescript
  * getType(0); // returns Number
  * getType(false); // returns Boolean
- * getType(''); // returns String 
+ * getType(''); // returns String
  * getType([]); // returns Array
  * getType({}); // returns Object
  * getType(/./); // returns RegExp
@@ -13,7 +13,7 @@
  * @returns Constructor of object
  */
 export const getType = (
-  object: boolean | number | string | Constructable
+  object: boolean | number | string | {constructor: (new (...args: any[]) => {}) | Function}
 ): Function | (new (...args: any[]) => {}) => {
   switch (typeof object) {
     case 'boolean':

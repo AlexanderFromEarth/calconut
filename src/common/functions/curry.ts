@@ -10,7 +10,7 @@
  * @param func Function that should be curried
  * @return Curried version of function
  */
-export const curry = <F extends Arity>(func: F): CurryOverloads<F> => {
+export const curry = <F extends (...args: any[]) => any>(func: F): CurryOverloads<F> => {
   const readParameters =
     (current: unknown[]): CurryOverloads<F> =>
     (...passed: unknown[]) => {
