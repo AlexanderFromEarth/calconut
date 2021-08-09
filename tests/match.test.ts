@@ -1,3 +1,5 @@
+import {match} from '../src/common/match';
+
 describe('Match', () => {
   it('One type', () => {
     const typeMatch = match({
