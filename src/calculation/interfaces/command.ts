@@ -1,4 +1,4 @@
-import {Computation} from './computation';
+import {Calculation} from './calculation';
 
 /**
  * Representation of inner step of calculation process
@@ -13,5 +13,5 @@ export interface Command<N> {
    * @param output Value from interpretation of command
    * @returns Next calculation
    */
-  next(output: any): Computation<N>;
+  next(output: any): Calculation<N>;
 }

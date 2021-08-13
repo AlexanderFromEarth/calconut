@@ -1,6 +1,6 @@
 import {
   Command,
-  Computation,
+  Calculation,
   createOperation,
   createReturn,
   Operation,
@@ -11,13 +11,13 @@ describe('Calculation', () => {
   class AddTwo implements Command<number> {
     public constructor(
       public input: number,
-      public next: (output: number) => Computation<number>
+      public next: (output: number) => Calculation<number>
     ) {}
   }
   class MultiplyByTwo implements Command<number> {
     public constructor(
       public input: number,
-      public next: (output: number) => Computation<number>
+      public next: (output: number) => Calculation<number>
     ) {}
   }
 
