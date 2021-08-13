@@ -1,3 +1,5 @@
+import {CalculationError, createFailure, createSuccess, Failure, Success} from '../src/errors';
+
 describe('Errors', () => {
   const successResult = createSuccess(2);
   const failureResult = createFailure(new CalculationError('Test', null));
