@@ -1,3 +1,9 @@
+import {Calculation, Command, createOperation, createReturn} from '../src/calculation';
+import {match} from '../src/common';
+import {createProcessor, Interpreter} from '../src/core';
+import {CalculationError, createTypeError} from '../src/errors';
+import {createFailure, createSuccess, isFailure, isSuccess, Result} from '../src/result';
+
 describe('Core', () => {
   class AddTwo implements Command<number> {
     public constructor(
