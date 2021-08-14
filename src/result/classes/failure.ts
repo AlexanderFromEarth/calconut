@@ -1,4 +1,4 @@
-import {Result} from './../interfaces/result';
+import {Result} from '../interfaces/result';
 
 /**
  * Failure representation of calculation

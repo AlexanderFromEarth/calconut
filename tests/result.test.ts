@@ -1,8 +1,8 @@
-import {CalculationError, createFailure, createSuccess, isFailure, isSuccess} from '../src/errors';
+import {createFailure, createSuccess, isFailure, isSuccess} from '../src/result';
 
-describe('Errors', () => {
+describe('Result', () => {
   const successResult = createSuccess(2);
-  const failureResult = createFailure(new CalculationError('Test', null));
+  const failureResult = createFailure('Test');
   const addTwo = (res: number) => createSuccess(res + 2);
 
   it('Then success', () => {
@@ -25,6 +25,6 @@ describe('Errors', () => {
       return;
     }
 
-    expect(nextFailure.error.message).toEqual('Test');
+    expect(nextFailure.error).toEqual('Test');
   });
 });

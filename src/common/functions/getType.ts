@@ -24,8 +24,5 @@ export const getType = (
       return String;
     case 'object':
       return object.constructor;
-    default:
-      const placeholder: never = object;
-      return placeholder;
   }
 };

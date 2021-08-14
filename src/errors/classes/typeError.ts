@@ -1,9 +1,9 @@
-import {CalculationError} from '../classes/error';
+import {BaseCalculationError} from './baseError';
 
 /**
  * Internal representation of TypeError
  */
-export class CalculationTypeError extends CalculationError {
+export class CalculationTypeError extends BaseCalculationError {
   /**
    * Create wrapped TypeError
    * @param message Message for error
