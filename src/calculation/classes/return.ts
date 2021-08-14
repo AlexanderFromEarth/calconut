@@ -5,7 +5,7 @@ import {Calculation} from '../interfaces/calculation';
  */
 export class Return<T> implements Calculation<T> {
   /**
-   * Creates object that represents end of calculation
+   * Create object that represents end of calculation
    * @param payload Data for storing in class
    */
   public constructor(public payload: T) {}

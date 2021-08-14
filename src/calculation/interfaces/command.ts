@@ -9,7 +9,7 @@ export interface Command<N> {
    */
   input: any;
   /**
-   * Computes next calculation step
+   * Compute next calculation step
    * @param output Value from interpretation of command
    * @returns Next calculation
    */

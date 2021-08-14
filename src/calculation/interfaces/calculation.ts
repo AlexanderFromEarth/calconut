@@ -9,7 +9,7 @@ export interface Calculation<T> {
    */
   then<U>(func: (_: T) => Calculation<U>): Calculation<U>;
   /**
-   * Modifies result of calculation
+   * Modify result of calculation
    * @param func Just function
    * @returns Modified calculation
    */

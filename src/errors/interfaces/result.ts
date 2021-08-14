@@ -3,7 +3,7 @@
  */
 export interface Result<T, E> {
   /**
-   * Continues calculation if previous was success
+   * Continue calculation if previous was success
    * @param func Function that returns result
    * @returns New result
    */

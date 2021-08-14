@@ -5,7 +5,7 @@ import {Result} from './../interfaces/result';
  */
 export class Failure<E> implements Result<any, E> {
   /**
-   * Creates object that represents calculation failure
+   * Create object that represents calculation failure
    * @param error Representation of error
    */
   public constructor(public error: E) {}

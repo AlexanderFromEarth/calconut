@@ -3,7 +3,7 @@
  */
 export class CalculationError extends Error {
 	/**
-	 * Creates wrapper error
+	 * Create wrapper error
 	 * @param message Text message
 	 * @param original Original error if it was catched
 	 */

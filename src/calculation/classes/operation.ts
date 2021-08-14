@@ -6,7 +6,7 @@ import {Command} from '../interfaces/command';
  */
 export class Operation<T> implements Calculation<T> {
   /**
-   * Creates object that represents one step of calculation
+   * Create object that represents one step of calculation
    * @param payload Command that must be interpreted in future
    */
   public constructor(public op: Command<T>) {}

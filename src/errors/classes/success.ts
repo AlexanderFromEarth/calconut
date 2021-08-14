@@ -5,7 +5,7 @@ import {Result} from './../interfaces/result';
  */
 export class Success<T> implements Result<T, unknown> {
   /**
-   * Creates object that represents calculation success
+   * Create object that represents calculation success
    * @param payload Success data
    */
   public constructor(public payload: T) {}
