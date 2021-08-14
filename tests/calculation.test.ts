@@ -1,12 +1,10 @@
 import {
-  Command,
   Calculation,
+  Command,
   createOperation,
   createReturn,
-  Operation,
-  Return,
-  isReturn,
   isOperation,
+  isReturn,
 } from '../src/calculation';
 
 describe('Calculation', () => {
@@ -27,39 +25,72 @@ describe('Calculation', () => {
   const operation = createOperation(new AddTwo(2, (o) => createReturn(o)));
 
   it('Modify operation', () => {
-    const stringOperation = <Operation<string>>operation.modify((num) => num.toString());
-    const stringReturn = <Return<string>>stringOperation.op.next(stringOperation.op.input + 2);
-
+    const stringOperation = operation.modify((num) => num.toString());
     expect(isOperation(stringOperation)).toEqual(true);
+
+    if (!isOperation(stringOperation)) {
+      return;
+    }
+
+    const stringReturn = stringOperation.op.next(stringOperation.op.input + 2);
+
     expect(isReturn(stringReturn)).toEqual(true);
+
+    if (!isReturn(stringReturn)) {
+      return;
+    }
+
     expect(stringReturn.payload).toEqual('4');
   });
   it('Then operation', () => {
-    const combinedOperation = <Operation<number>>(
-      operation.then((next) => createOperation(new MultiplyByTwo(next, (o) => createReturn(o))))
-    );
-    const additionResult = <Operation<number>>(
-      combinedOperation.op.next(combinedOperation.op.input + 2)
-    );
-    const multiplicationReturn = <Return<number>>(
-      additionResult.op.next(additionResult.op.input * 2)
+    const combinedOperation = operation.then((next) =>
+      createOperation(new MultiplyByTwo(next, (o) => createReturn(o)))
     );
 
     expect(isOperation(combinedOperation)).toEqual(true);
+
+    if (!isOperation(combinedOperation)) {
+      return;
+    }
+
+    const additionResult = combinedOperation.op.next(combinedOperation.op.input + 2);
+
     expect(isOperation(additionResult)).toEqual(true);
+
+    if (!isOperation(additionResult)) {
+      return;
+    }
+
+    const multiplicationReturn = additionResult.op.next(additionResult.op.input * 2);
+
     expect(isReturn(multiplicationReturn)).toEqual(true);
+
+    if (!isReturn(multiplicationReturn)) {
+      return;
+    }
+
     expect(multiplicationReturn.payload).toEqual(8);
   });
   it('Modify return', () => {
-    const stringReturn = <Return<string>>return_.modify((num) => num.toString());
+    const stringReturn = return_.modify((num) => num.toString());
 
     expect(isReturn(stringReturn)).toEqual(true);
+
+    if (!isReturn(stringReturn)) {
+      return;
+    }
+
     expect(stringReturn.payload).toEqual('2');
   });
   it('Then return', () => {
-    const combinedReturn = <Return<number>>return_.then((next) => createReturn(next * 2));
+    const combinedReturn = return_.then((next) => createReturn(next * 2));
 
     expect(isReturn(combinedReturn)).toEqual(true);
+
+    if (!isReturn(combinedReturn)) {
+      return;
+    }
+
     expect(combinedReturn.payload).toEqual(4);
   });
 });

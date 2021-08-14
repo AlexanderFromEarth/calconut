@@ -10,26 +10,36 @@ describe('Core', () => {
       return (
         match<Command<T>, Result<number, CalculationError>>({
           AddTwo: (arg) => createSuccess(arg.input + 2),
-        })(command) || createFailure(new CalculationError('Test', null))
+        })(command) || createFailure(createTypeError('Test'))
       );
     }
   }
 
   it('Success Process', () => {
     const processor = createProcessor(new CalculatorInterpreter());
-    const operation = createOperation(new AddTwo(2, (output) => createReturn(output))).modify(
-      createSuccess
-    );
-    const result = processor.process(operation) as Success<number>;
+    const operation = createOperation(new AddTwo(2, createReturn)).modify(createSuccess);
+    const result = processor.process(operation);
+
+    expect(isSuccess(result)).toEqual(true);
+
+    if (!isSuccess(result)) {
+      return;
+    }
 
     expect(result.payload).toEqual(4);
   });
   it('Failure Process', () => {
     const processor = createProcessor(new CalculatorInterpreter());
-    const operation = createOperation(new AddTwo(2, (output) => createReturn(output)))
+    const operation = createOperation(new AddTwo(2, createReturn))
       .modify(createSuccess)
       .then((arg) => createOperation({input: arg.payload, next: createReturn}));
-    const result = processor.process(operation) as Failure<CalculationError>;
+    const result = processor.process(operation);
+
+    expect(isFailure(result)).toEqual(true);
+
+    if (!isFailure(result)) {
+      return;
+    }
 
     expect(result.error.message).toEqual('Test');
   });
