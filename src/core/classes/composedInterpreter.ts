@@ -1,4 +1,4 @@
-import {Command} from '../../calculation';
+import {Calculation, Command} from '../../calculation';
 import {CalculationError, createTypeError} from '../../errors';
 import {createFailure, Failure, isSuccess, Result} from '../../result';
 import {Interpreter} from '../interfaces/interpreter';
@@ -13,7 +13,7 @@ export class ComposedInterpreter implements Interpreter {
    */
   public constructor(private interpreters: Interpreter[]) {}
 
-  public interpret<T>(command: Command<T>): Result<any, CalculationError> {
+  public interpret<T>(command: Command<T>): Result<Calculation<T>, CalculationError> {
     return this._findInterpretation(command) ?? this._makeNotFoundError();
   }
 
@@ -21,11 +21,13 @@ export class ComposedInterpreter implements Interpreter {
     return createFailure(createTypeError('Interpretation not found'));
   }
 
-  private _findInterpretation<T>(command: Command<T>): Result<any, CalculationError> | undefined {
+  private _findInterpretation<T>(
+    command: Command<T>
+  ): Result<Calculation<T>, CalculationError> | undefined {
     return this._applyInterpreters(command).find(isSuccess);
   }
 
-  private _applyInterpreters<T>(command: Command<T>): Result<any, CalculationError>[] {
+  private _applyInterpreters<T>(command: Command<T>): Result<Calculation<T>, CalculationError>[] {
     return this.interpreters.map((interpreter) => interpreter.interpret(command));
   }
 }

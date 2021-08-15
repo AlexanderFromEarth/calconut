@@ -1,7 +1,7 @@
 import {Calculation, Operation, Return} from '../../calculation';
 import {match} from '../../common';
 import {CalculationError} from '../../errors';
-import {Result} from '../../result';
+import {createSuccess, Result} from '../../result';
 import {Interpreter} from './../interfaces/interpreter';
 
 /**
@@ -19,24 +19,18 @@ export class Processor {
    * @param calculation Calculation for interpretation
    * @returns Result of calculations
    */
-  public process<T>(
-    calculation: Calculation<Result<T, CalculationError>>
-  ): Result<T, CalculationError> {
-    return match<Calculation<Result<T, CalculationError>>, Result<T, CalculationError>>({
-      Operation: (obj) => this._resolveOperation(obj as Operation<Result<T, CalculationError>>),
-      Return: (obj) => this._resolveReturn(obj as Return<Result<T, CalculationError>>),
+  public process<T>(calculation: Calculation<T>): Result<T, CalculationError> {
+    return match<Calculation<T>, Result<T, CalculationError>>({
+      Operation: (obj) => this._resolveOperation(obj as Operation<T>),
+      Return: (obj) => this._resolveReturn(obj as Return<T>),
     })(calculation)!;
   }
 
-  private _resolveReturn<T>(ret: Return<Result<T, CalculationError>>): Result<T, CalculationError> {
-    return ret.payload;
+  private _resolveReturn<T>(ret: Return<T>): Result<T, CalculationError> {
+    return createSuccess(ret.payload);
   }
 
-  private _resolveOperation<T>(
-    operation: Operation<Result<T, CalculationError>>
-  ): Result<T, CalculationError> {
-    return this.interpreter
-      .interpret(operation.op)
-      .then((value) => this.process(operation.op.next(value)));
+  private _resolveOperation<T>(operation: Operation<T>): Result<T, CalculationError> {
+    return this.interpreter.interpret(operation.op).then((o) => this.process(o));
   }
 }

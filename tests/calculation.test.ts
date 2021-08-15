@@ -8,21 +8,15 @@ import {
 } from '../src/calculation';
 
 describe('Calculation', () => {
-  class AddTwo implements Command<number> {
-    public constructor(
-      public input: number,
-      public next: (output: number) => Calculation<number>
-    ) {}
+  class AddTwo<T> implements Command<T> {
+    public constructor(public input: number, public next: (output: number) => Calculation<T>) {}
   }
-  class MultiplyByTwo implements Command<number> {
-    public constructor(
-      public input: number,
-      public next: (output: number) => Calculation<number>
-    ) {}
+  class MultiplyByTwo<T> implements Command<T> {
+    public constructor(public input: number, public next: (output: number) => Calculation<T>) {}
   }
 
   const return_ = createReturn(2);
-  const operation = createOperation(new AddTwo(2, (o) => createReturn(o)));
+  const operation = createOperation(new AddTwo(2, createReturn));
 
   it('Modify operation', () => {
     const stringOperation = operation.modify((num) => num.toString());
@@ -44,7 +38,7 @@ describe('Calculation', () => {
   });
   it('Then operation', () => {
     const combinedOperation = operation.then((next) =>
-      createOperation(new MultiplyByTwo(next, (o) => createReturn(o)))
+      createOperation(new MultiplyByTwo(next, createReturn))
     );
 
     expect(isOperation(combinedOperation)).toEqual(true);
