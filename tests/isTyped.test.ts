@@ -1,3 +1,5 @@
+import {isTyped} from '../src/common';
+
 describe('IsTyped', () => {
   it('Typed', () => {
     expect(isTyped({type: 'TypedObject'})).toEqual(true);
