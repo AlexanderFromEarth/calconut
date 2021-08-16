@@ -20,14 +20,6 @@ export class Operation<T> implements Calculation<T> {
   }
 
   private _recreateOp<U>(func: (_: any) => Calculation<U>): Command<U> {
-    return new (this._makeConstructor(func))();
-  }
-
-  private _makeConstructor<U>(
-    func: (_: any) => Calculation<U>
-  ): new (...args: any[]) => Command<U> {
-    const opConstructor = this.op.constructor;
-
-    return opConstructor.bind.apply(opConstructor, [null, this.op.input, func]);
+    return {...this.op, next: func};
   }
 }

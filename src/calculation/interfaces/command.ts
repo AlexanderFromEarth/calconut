@@ -5,6 +5,10 @@ import {Calculation} from './calculation';
  */
 export interface Command<N> {
   /**
+   * Unique name for identification
+   */
+  type: string;
+  /**
    * Input for getting interpretation
    */
   input: any;

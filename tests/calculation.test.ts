@@ -9,9 +9,13 @@ import {
 
 describe('Calculation', () => {
   class AddTwo<T> implements Command<T> {
+    public type: string = 'AddTwo' as const;
+
     public constructor(public input: number, public next: (output: number) => Calculation<T>) {}
   }
   class MultiplyByTwo<T> implements Command<T> {
+    public type: string = 'MultiplyByTwo' as const;
+
     public constructor(public input: number, public next: (output: number) => Calculation<T>) {}
   }
 

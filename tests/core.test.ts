@@ -6,6 +6,8 @@ import {createFailure, createSuccess, isFailure, isSuccess, Result} from '../src
 
 describe('Core', () => {
   class AddTwo<T> implements Command<T> {
+    public type: string = 'AddTwo' as const;
+
     public constructor(public input: number, public next: (output: number) => Calculation<T>) {}
   }
   class CalculatorInterpreter implements Interpreter {
@@ -34,7 +36,7 @@ describe('Core', () => {
   it('Failure Process', () => {
     const processor = createProcessor(new CalculatorInterpreter());
     const operation = createOperation(new AddTwo(2, createReturn)).then((arg) =>
-      createOperation({input: arg, next: createReturn})
+      createOperation({type: 'Unknown', input: arg, next: createReturn})
     );
     const result = processor.process(operation);
 
