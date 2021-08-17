@@ -5,6 +5,25 @@ __metadata:
   version: 4
   cacheKey: 8
 
+"@alexanderfromearth/calconut@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@alexanderfromearth/calconut@workspace:."
+  dependencies:
+    "@types/jest": ^26.0.24
+    "@types/node": ^16.4.13
+    "@typescript-eslint/eslint-plugin": ^4.29.0
+    "@typescript-eslint/parser": ^4.29.0
+    eslint: ^7.32.0
+    eslint-plugin-import: ^2.23.4
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-promise: ^5.1.0
+    generate-changelog: ^1.8.0
+    jest: ^27.0.6
+    ts-jest: ^27.0.4
+    typescript: ^4.3.5
+  languageName: unknown
+  linkType: soft
+
 "@babel/code-frame@npm:7.12.11":
   version: 7.12.11
   resolution: "@babel/code-frame@npm:7.12.11"
@@ -1424,25 +1443,6 @@ __metadata:
   checksum: 34d0fba6030dd3f1f9de4d9fb486cfa8f6ec836ab00d75b846b40c06f96e64898e781f715d19a2c357a601a899c339a44446f94dd328f173605af165a295dd29
   languageName: node
   linkType: hard
-
-"calconut@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "calconut@workspace:."
-  dependencies:
-    "@types/jest": ^26.0.24
-    "@types/node": ^16.4.13
-    "@typescript-eslint/eslint-plugin": ^4.29.0
-    "@typescript-eslint/parser": ^4.29.0
-    eslint: ^7.32.0
-    eslint-plugin-import: ^2.23.4
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-promise: ^5.1.0
-    generate-changelog: ^1.8.0
-    jest: ^27.0.6
-    ts-jest: ^27.0.4
-    typescript: ^4.3.5
-  languageName: unknown
-  linkType: soft
 
 "call-bind@npm:^1.0.0, call-bind@npm:^1.0.2":
   version: 1.0.2
